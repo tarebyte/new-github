@@ -3,12 +3,12 @@
   "version": "0.0.1",
   "description": "Fresh look at GitHub repos",
   "content_scripts": [{
-    "css": ["css/new-github.css"],
     "js": ["js/jquery.min.js", "js/geopattern.min.js", "js/new-github.js"],
-    "matches": ["https://github.com/CWDG/cwdg-website"]
+    "matches": ["https://github.com/*/*"]
   }],
   "permissions": [
-    "storage"
+    "storage",
+    "https://github.com/*/*"
   ],
   "manifest_version": 2
 }
