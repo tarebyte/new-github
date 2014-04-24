@@ -16,9 +16,12 @@ if (document.URL.split(/\//g).length - 1 == 4) {
     '.fork-flag'
   ].forEach(whiteOut);
 
-  // White text doesn't look good with the gold background
-  if ($('.repo-label > span').text() == 'public')
+  if ($('.repo-label > span').text() == 'public') {
     $('.repo-label > span').css('color', 'white');
+
+    // Definitely not doing this right
+    $('head').prepend("<style> .octicon-repo:before { color: white !important; opacity: 0.6 !important} </style>");
+  }
 
   [
     '.subscription',
