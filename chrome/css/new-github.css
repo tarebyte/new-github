@@ -1,4 +1,12 @@
+/*.white {
+  color: white !important;
+}
+
 .octicon-repo:before {
   color: white !important;
   opacity: 0.6 !important;
 }
+
+.starred, .unstarred, .social-count, .fork-button {
+  border-color: rgba(51, 51, 51, 0.6) !important;
+}*/

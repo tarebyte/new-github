@@ -1,4 +1,6 @@
 if (document.URL.split(/\//g).length - 1 == 4) {
+  injectCSS();
+
   var githubRepo = document.URL.split('/')[4];
   var githubUser = document.URL.split('/')[3];
 
@@ -31,7 +33,7 @@ if (document.URL.split(/\//g).length - 1 == 4) {
 }
 
 function generateGeoPatternBackground(githubRepo) {
-  var pattern = GeoPattern.generate(githubRepo);
+  var pattern = GeoPattern.generate(githubRepo, {baseColor: '#333'});
 
   $('.pagehead').css(
     {
@@ -87,5 +89,23 @@ function moveBranchListing() {
   $('.pagehead-actions').prepend($listEl);
 }
 
+// This is due to the constraint right now that I only style the main repo page
+function injectCSS() {
+  var styleCSS = "<style>\
+                    .white { \
+                        color: white !important; \
+                    }\
+                    .octicon-repo:before {\
+                      color: white !important;\
+                      opacity: 0.6 !important;\
+                    }\
+                    .starred, .unstarred, .social-count, .fork-button {\
+                      border-color: rgba(51, 51, 51, 0.6) !important;\
+                    }\
+                    </style>";
+
+  $('head').append(styleCSS);
+}
+
 function remove(element, index, array) { $(element).remove(); };
-function whiteOut(element, index, array) { $(element).css('color', 'white') };
+function whiteOut(element, index, array) { $(element).addClass('white') };
