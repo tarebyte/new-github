@@ -5,7 +5,8 @@
   "content_scripts": [{
     "css": ["css/new-github.css"],
     "js": ["js/jquery.min.js", "js/geopattern.min.js", "js/new-github.js"],
-    "matches": ["https://github.com/*/*"]
+    "matches": ["https://github.com/*/*"],
+    "exclude_globs": ["https://github.com/*/followers/"]
   }],
   "permissions": [
     "storage",

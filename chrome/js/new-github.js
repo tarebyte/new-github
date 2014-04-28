@@ -1,3 +1,7 @@
+String.prototype.capitalize = function() {
+  return this.charAt(0).toUpperCase() + this.slice(1);
+}
+
 if (document.URL.split(/\//g).length - 1 == 4) {
   injectCSS();
 
@@ -8,6 +12,7 @@ if (document.URL.split(/\//g).length - 1 == 4) {
   createAndInsertCompareLink();
   moveCreateNewFile();
   moveBranchListing();
+  insertIntoSunkenMenuGroup();
 
   [
     '.octicon-repo:before',
@@ -32,8 +37,41 @@ if (document.URL.split(/\//g).length - 1 == 4) {
   ].forEach(remove)
 }
 
+function insertIntoSunkenMenuGroup() {
+  $($('.numbers-summary').children().get().reverse())
+  .each(createSunkenMenuObject);
+}
+
+function createSunkenMenuObject() {
+  var $commit      = $(this);
+  var $count       = $commit.find('.num').text().replace(/\s+/g, '');
+  var $counter     = $('<span class="counter">'+ $count +'</span>');
+  var $icon        = $commit.find('.octicon');
+
+  var $label       = $commit.text().replace(/\s+\d*/g, '').capitalize();
+  var $fullWord    = $('<span class="full-word">&nbsp;' + $label + '</span>');
+
+  var $imageLoader = $('<img alt="Octocat-spinner-32" class="mini-loader" height="16" src="https://github.global.ssl.fastly.net/images/spinners/octocat-spinner-32.gif" width="16">');
+
+  $commit
+    .removeClass()
+    .addClass('tooltipped tooltipped-w')
+    .attr('aria-label', $label);
+
+  $commit
+    .find('a')
+    .addClass('js-selected-navigation-item sunken-menu-item js-disable-pjax')
+    .removeAttr('data-pjax')
+    .attr('aria-label', $label)
+    .empty()
+    .append($icon, $fullWord, $counter, $imageLoader);
+
+  $commit.insertAfter('.sunken-menu-group > li:eq(0)');
+}
+
 function generateGeoPatternBackground(githubRepo) {
-  var pattern = GeoPattern.generate(githubRepo, {baseColor: '#333'});
+  // var pattern = GeoPattern.generate(githubRepo, {baseColor: '#333'});
+  var pattern = GeoPattern.generate(githubRepo);
 
   $('.pagehead').css(
     {
@@ -107,5 +145,11 @@ function injectCSS() {
   $('head').append(styleCSS);
 }
 
-function remove(element, index, array) { $(element).remove(); };
-function whiteOut(element, index, array) { $(element).addClass('white') };
+function remove(element, index, array) {
+  $(element).remove();
+};
+
+function whiteOut(element, index, array) {
+  $(element).addClass('white')
+};
+
