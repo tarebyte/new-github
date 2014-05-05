@@ -32,7 +32,7 @@ Feel free to send a pull request if you've made an improvement.
 * [Jason Long](https://github.com/jasonlong) for the original [geo_pattern](https://github.com/jasonlong/geo_pattern), and for the Chrome Extension instructions from his [isometric-contributions](https://github.com/jasonlong/isometric-contributions) project.
 
 ###Contributing
-There are a lot of things I still new to work out, but feel free to fork the [fork the repo](https://github.com/tarebyte/new-github/fork).
+There are a lot of things I still need to work out, but feel free to fork the [fork the repo](https://github.com/tarebyte/new-github/fork).
 Pull requests are always welcome! :smile:
 
 ## License
